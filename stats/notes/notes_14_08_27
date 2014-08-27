@@ -1,0 +1,20 @@
+text: walpole myers probability and stats for engineers
+
+>> bring calculator
+
+if you change the minimum, the median is unaffected, but mean changes. 
+
+therefore the median is more robust and not impacted by outlier. 
+
+review independence and differentiability of population variance versus sample variance in standard deviation calculations. 
+
+plot a box plot for some set of data and write down the ssd, psd, Q1, and Q3
+make a histogram for the same set.
+
+Mutually exclusive or independent set notation and rules. 
+
+Chapter 2
+-----------
+sample space - all possible outcomes
+	toss a coin three times. _ _ _ ->  [ HHT, HTH, THH, TTH, THT, HTT, HHH, TTT ]
+				 2 2 2 ->  2^3 : multiplication principle
