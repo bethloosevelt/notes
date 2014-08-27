@@ -1,0 +1,14 @@
+to view assigned videos
+	- blackboard -> tools -> echo 360
+
+bubblesort is so slow because each loop through it iterates over n elements.
+
+selectionsort chooses the smallest or largest element each time, allowing it to only itterate over n-1 elements each subsequent loop.
+
+quicksort chooses a pivot and virtually halves the number of elements itterated over each time. 
+
+need to review big O notation a bit. Find online explination video. 
+
+
+
+

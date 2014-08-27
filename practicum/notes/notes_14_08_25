@@ -1,0 +1,38 @@
+using pizza
+cs.uic.edu/CS211
+troy@uic.edu >> subject CS211
+
+syllabus handed out, green sheet 
+most of course is in lab 
+need to get prereq waived. 
+
+Books: understanding and using c pointers, reese
+       head first java, sierra & bates (for ood)
+
+each project is 5% of grade, max of 50% ( you can blow off 3 but fuck that)
+
+lab excersiseseses - each is 1% of final grade, total of 10% max
+
+code review - small group walk people through your code
+	    - reviewer or presenter 10%
+	    - .5% if you review, 2% if you present. (go to lab)
+
+
+Exam you get the internet.
+there are 2, the second counts as final. first is the midterm.
+
+no excuse to not get an A. If you aren't getting an A you have blown
+off a major part of the course. Don't do that shit. 
+
+
+concepts:
+
+memory management
+pointers
+tools - testing, review, version control, recursion, cli, etc
+OOP
+
+ASSIGNMENT - due thursday of this week: 
+	simple parameter passing 
+	check website
+	need to pass by refference in the array section
