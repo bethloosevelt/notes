@@ -1,0 +1,31 @@
+Talked about women in computer science.
+Professor does social network analysis
+
+link article about formal writing versus natural language programming. 
+
+logic - 
+	doundation is descrete mathematics
+	Explicivety is crucial
+	
+	Formal logic begins with a statement
+		- a statement is either explicitly true or false 			  wthout variance or evaluaion 
+	
+	Logical operators:
+		not (-| ! ~ ...) -> flips bit
+		and (&& + ^ ...) -> 1 iff both parts are true
+		or  (|| v )	 -> 1 if one part is true	
+		xor (o + x)      -> 1 iff ONE part is true 
+		
+		-can evaluate xor with only ! ^ v
+		r = (p && !q) || (!p && q)
+			
+		p | q | r
+		---------		
+		1 | 1 | 0		
+		1 | 0 | 1
+		0 | 1 | 1
+		0 | 0 | 0
+
+
+
+
