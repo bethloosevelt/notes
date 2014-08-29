@@ -1,0 +1,36 @@
+can 109 count for design 2?
+turns out there is a ssh plugin for chrome
+
+
+basics of compiler and unix operation
+	gcc, clang, etc	
+
+When running an application, shell searches bin first
+	- /usr/bin/vim for example
+	
+
+
+compilation steps:
+
+	tokenization and parsing (lexical analysis)
+		doesn't want to think about a file as a sequence of 
+		characters, but as tokens
+		gramatical analysis (left to right operations etc)
+
+	code generation
+		uses intermediate files
+
+	linking (used to be a unix program called ln, now part of gcc)
+		resolve calls to lib functions (unresolved refference err)
+		produce executable file
+
+
+	-> for grammar of C, see back of Khernighan and Ritchie book
+
+
+expression
+	base case:   number
+	abstraction: concatonate operators on. +, -, () etc
+
+
+asshole kid fails to impress (yet again) with basic knowlege of syntax.
