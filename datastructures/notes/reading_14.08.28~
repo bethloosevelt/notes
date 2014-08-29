@@ -1,0 +1,23 @@
+Dominance of algorithms
+	Exponential algorhithms fail quickly 
+		-Only appropriate for small data
+	Quadratic algorithms practical until 10^6
+	O*nlogn until 10^9
+	O*logn "never sweats
+
+	little o notation means "grows strictly slower than following function"
+
+	a function is said to dominate the other if when n approaches infinity, the function devided by the other approaches 0. 
+	if the same approach is taken and the result is > 0 then it does not dominate. 
+
+
+DOMINANCE RANKING TABLE
+	n! >> 2^n >> n^3 >> n^2 >> nlogn >> n >> logn >> 1
+	
+FURTHER RANKING
+	n! >> c^n >> n^3 >> n^2 >> n^(1+e) >> nlogn >> n >> sqrt(n) >> (logn)^2 >> logn >> logn/loglogn >> loglogn >> a(n) >> 1
+
+
+how many times can we halve n before getting to 1? 
+	lgn times. -> inverse of the exponential
+	this is important for binary search
