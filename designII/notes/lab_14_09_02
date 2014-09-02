@@ -1,0 +1,25 @@
+syntax for makefile:
+
+refference: http://mrbook.org/tutorials/make/
+
+set variable at top as follows:
+
+CFLAGS=-c -Wall
+
+{later...}
+$(CFLAGS) -> inserts text in variables as part of makefile
+
+<target>: <dependencies, space delimited>
+<tab>	<system commands>
+
+
+example: 
+
+simpleio.o: simpleio.h simpleio.c
+	gcc -c simpleio.c
+
+demo: demo.c simpleio.o
+	gcc -o demo demo.c simpleio.o
+
+hello: hello.c simpleio.o
+	gcc -o hello demo.c simpleio.o
