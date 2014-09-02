@@ -1,0 +1,29 @@
+Basics of syntax
+
+use #define to declare values of "magic numbers" that have resounding impact on the behavior of your program. Think of this as a settings section.
+These defined values will be replaced in your code at compilation.
+
+
+functions/loops and their bracing 
+
+
+main()
+{
+/* comes afer a newline */
+}
+
+while() {
+/* comes after the parens */
+}
+
+
+
+Thoughts on brevity vs explicivity 
+	"This version centralizes the input - there is now only one reference to
+getchar - and shrinks the program. The resulting program is more com-
+pact, and, once the idiom is mastered, easier to read. You'll see this style
+often. (It's possible to get carried away and create impenetrable code, how-
+ever, a tendency that we will try to curb.)" -Ritchie
+
+
+
