@@ -1,0 +1,48 @@
+	"if your mathematics are certain, they are not describing
+	the real world"
+			-AE
+
+Homework 1 has been released
+	Due in class tuesday september 9th
+	see blackboard for details
+	
+	do a practice problem involving a large compound truth table. 
+
+	-------------------------------------------------------------
+
+
+Entire system is built on nand gates. -> !(and)
+
+DeMorgans law:
+
+	!(p&&q) == !p || !q
+	!(p||q) == !p && !q	
+	
+	Distributive laws
+		P||(P&&q) == (p||q)&&(p||q)
+		etc (see table)
+	-> if the truth tables are equivilent, the operations are equivilent
+
+	Certain expressions can be simplified down
+		- compilers will simplify logic down to a small set of 
+		  compares to make your code more efficient for you. 
+		"the most readable is not the most efficient"
+		- why not both...
+
+
+Conditional statements
+
+	if p then q
+		- p is called the hypothesis; q is the conclusion
+		- the statement is only false when hypothesis is true, but the conclusion is false.
+		- this was the only promise made by the statement
+		- either may be true independently of our hypothesis
+
+
+		- a statement is logically equivilent to its contrapositive
+		- a biconditional statement is equivilent to all of its inverse,converse, contrapositive
+
+
+	
+
+
