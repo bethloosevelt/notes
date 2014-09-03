@@ -1,0 +1,11 @@
+commands linux
+
+ctrl+z -> suspend
+to resume -> fg
+!+command -> run with same options as last time I ran it
+:vsplit (in vi vim) + filename -> open another file
+ -ctrlww to toggle vi windows
+:<number> -> takes to line number
+:set nu -> turns on line numbers
+
+Homework1 due next Friday: 09/11/14
