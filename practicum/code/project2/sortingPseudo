@@ -1,0 +1,14 @@
+Plan for a quicksort algorhythm
+
+
+pick pivot point and left and right points
+move pivot point to front of list. 
+
+go through rest of list
+	if ( larger than pivot)
+		leave it be
+	otherwise
+		move it to the front of the list
+	recur on either new partitions
+	
+	how to know new partition indecies?
