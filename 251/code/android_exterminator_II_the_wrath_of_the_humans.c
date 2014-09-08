@@ -5,6 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// struct for linked list
+struct node {
+	char passenger;
+	node *next;
+};
+
 // functions needed
 
 char * getFileName()
@@ -13,7 +19,17 @@ char * loadScenario(filename)
 
 int findCylons(list)
 
-int matin(void) {
+
+//### main ###//
+int main(void) {
+	// initialize root of linked list
+	struct node* root;
+	root = malloc( sizeof(struct node) );
+	iterator = root
+
+
+
+
 	printf("Scenario: <file name>\n");
 	
 	filename = getFileName();
