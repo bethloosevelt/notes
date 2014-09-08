@@ -42,17 +42,20 @@ void printArr(int * array, int size) {
 void moveFront(int * array, int dataIndex, int frontIndex) {
 	printf("inside moveFront");
 	// first move the desired data to the front, saving whatever is there
-	int temp = array[frontIndex];
+	int temp, temp2;
+
+	// first move the desired data to the front, saving whatever is there
+	temp = array[frontIndex];
 	array[frontIndex] = array[dataIndex];
 	
 	// now we need to shift over the rest of the array
-	while(frontIndex <= dataIndex)
+	while(frontIndex < dataIndex)
 	{	frontIndex++;
 		// take the first element
 		// replace it with the one we saved in temp
 		// now shift temp2 over to temp
 		// repeat until all items up to 
-		int temp2 = array[frontIndex];
+		temp2 = array[frontIndex];
 		array[frontIndex] = temp;
 		temp = temp2;
 	}
@@ -63,15 +66,15 @@ void sort(int * array, int left, int right) {
 	int pivot = array[0];
 	
 	// check all items to left of pivot
-	for (int i = 1; i < right; i++)
-	{	printf("%d", array[i]);
+	for (int i = 1; i <= right; i++)
+	{	//printf("%d", array[i]);
 		if( array[i] <= pivot)	
 		{	
 			moveFront(array, i, left);
 		}
 	}	
         printArr(array, right);	
-	if((right-left)/2 > 1)
+	if(right-left > 1)
 	{
 		sort(array, (right-left)/2, right);
 		//	sort(array, left, right/2);
