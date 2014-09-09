@@ -1,0 +1,48 @@
+professor: theys
+
+ITA tech challenge. Thursday, SEL 2254 (50 seats)
+> exam? fuck that
+
+exam 1 is on 9/29 (thursday of career fair) -> is on cahpters 1 through 3
+
+reading notes:
+	moores law:
+	processing power is doubled every two years. Theys says 18 months. 
+	wikipedia says it is all about transistor count actually. 
+
+	variables are stored in registries while being operated on in an 
+	x86 architecture
+	
+	There are 8 registers in an x86 chip
+	eax - al is lowere 8 bits of lower half, ah is high of low. eh/el 
+	    - simmilar respectively 
+	ebx
+	ecx
+	edx
+	esp - special for stack. stack pointer
+	ebp - special for stack
+	esi
+	edi
+	take the e off and you have 16 bit registers for backwards compatibility
+	
+	addi	ah, #3 ;add immidiate to high byte in eax
+
+for looking into asm
+	object dump gives adresses, gcc doesn't
+	if you want the translated to machine code commands, use object dump
+	"gdb"
+	
+review: 2's compliment. how to do it quickly. 
+	push and pop with the stack
+
+	pushl command means pushing a full 32 bit register. 
+	example
+		movl	$0, -8(%ebp)
+		; this says mov long 00000... into address stored in ebp + (-8)
+		movl	$0, ebp
+		; would just move 0000... into the ebp registry
+
+	leal	4(esp), ecx
+		read operand from 4+address in esp -> store that in ecx
+	leal stores an address. So yea we got some math for free here. 
+
