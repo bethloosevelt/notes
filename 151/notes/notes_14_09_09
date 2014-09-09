@@ -1,0 +1,64 @@
+if we can say that a value being false leads to a contradiction, 
+we can then assume this value must be true. 
+
+example. 
+
+you are working as a clerk. 
+if you have won the lottery you would not being working. 
+
+therefore you have not won the lottery. 
+proof by contradiction. 
+
+assume the assumption is false, this constrains the assumptions to false as well
+"see what happens to the original"
+
+C:=you are working as a clerk
+(L -> !C) and C -> overall must be false
+
+			therefore not L
+
+no statement can be both correct and complete. 
+
+-> implication <-> if and only if
+
+
+pythagorean theorem in propositional logic.
+
+how to formulate that there are infinitely many primes?
+
+this class is so interesting but I feel like I'm going to die. 
+
+predicate logic. : propositions with variables
+	- the letter _ is a variable
+	- without a place holder it is not a proposition
+		- neither true nor false
+	- a proposition isi only a proposition if it is either true or false
+	- a perdicate has a truth set of all the values that evaluate it 
+		- as a true statement. 
+
+proving the communal prop of addition:
+	for all integers x and all integers y, x + y = y + x 
+
+the existential quantifier
+	E(backwards)y,y**2 = y
+	says -> there exists some y where y**2=y
+	there is no domain specified. could be rocks. 
+	the truth of the predicate depends on the domain
+
+A(upsidedowm)E, x<y
+	for all integers x, there exists some y where x < y. 
+	This just says "infinity is a thing" 
+	which. is terrifying really.
+
+so how do we translate?
+	can't really write that down here. 
+	check out Fermat's theorem. proved in 1994. wow. 
+	
+	http://en.wikipedia.org/wiki/Fermat's_last_theorem
+
+	also checkout goldbach conjectures.
+		- write the predicate for the all numbers greater than 
+			2 are a sum of two primes
+
+	relevant xkcd: http://xkcd.com/1310/
+ 
