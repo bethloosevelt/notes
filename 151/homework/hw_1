@@ -1,0 +1,28 @@
+Dale Wesa
+UIN: 676019303
+CS 151, Fall 2014
+
+*****************
+*  Homework #1  *
+*****************
+
+1) certified. 
+2) posted.
+
+3)
+
+A:
+	i.   False: i is not always 1. It begins at 1, then incriments until i == n
+	ii.  True
+	iii. False: n can be any number, therefore there could be any number of zs where the xor == something non-zero.
+	iv.  False. z is only non-zero in the case that x != y. They need differing bits for xor to produce non-zero
+	v. True: if their bits are not identical, there will be atleast one on bit in z causing sigma to increase. 
+
+B:
+	i.    z1  = 2 and d>=0, which is false
+	ii.   z1 != 2 or !(d>=0), which is true
+	iii.  z1 != 2 or (z=2 and d>=0), which is true
+	iv.   z1 = 2 and d>=0, which is false
+	v.    if d>=0, then z=2, and if z=2, then d=>0, which is false
+	vi.   if !(d>=0) then z1=2, which is false
+

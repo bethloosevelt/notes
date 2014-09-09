@@ -25,7 +25,9 @@ int main(void) {
 	// initialize root of linked list
 	struct node* root;
 	root = malloc( sizeof(struct node) );
-	iterator = root
+	// keep root in one place, and create a 
+	// conducter that will allow us to step through the list
+	iterator = root;
 
 
 
