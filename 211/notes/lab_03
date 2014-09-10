@@ -1,0 +1,10 @@
+int main (int argc, char** argv)
+
+this will pass the command line arguments to the function main. 
+the arguments are simply separated by any ammount of whitespace. 
+
+can use this to enable a debuging mode for your programs 
+	- use an argument to set a global var like DEBUG to true 
+	- then only run debug print statements if (DEBUG)
+
+	- performance loss due to unused debug statements?
