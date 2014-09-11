@@ -1,0 +1,38 @@
+General addressing form 
+
+	leal - load effective address (calculates address, stores in second		  parameter)
+
+		leal 4( %ebp, %ebp, 2), eax
+			4 + value in ebp + 2*value in ebp
+
+	setne - set a lower byte. So could use with al bl etc. 
+
+	mov - parenthasis here evaluate the address of the register
+	    - just takes the, and moves it 
+	    - to register 2
+
+	sal - shift arythmetic left, what does first argument do?
+	
+	TO RECAP
+		- leal is for addresses. 
+		- mov is for values.
+
+http://stackoverflow.com/questions/11212444/what-does-the-leal-assembly-instruction-do
+
+	where do our parameters get stored?
+	someFunction (8ebp, 12ebp, 16ebp)
+		if char you'll see odd values 
+	notice how you can't pass data structures in C!
+	you just pass a pointer. This is why. 
+
+
+	cmpl a, b  - compares two arguments and sets 4 flags 
+		   - (used before a jump)
+		   - performs a - b
+
+	jumps - follow formulas to determine whether to jump 
+	      - less than, or equal to, equal to, etc
+
+	subl  - does b-a stores into b (fact check this)
+
+	 
