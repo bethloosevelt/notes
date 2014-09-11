@@ -1,0 +1,37 @@
+There is dispute over whether natural numbers begin at 1 or 0
+
+use Z- Z Z+ Z0 notation for clarity (all modifiers to be written as superscript)
+
+statement: everybody likes football
+negation:  there exists someone who doesn't like football 
+       	 - note how this is not "no one likes football"
+	 - it is not "everybody hates football" because that would require 
+	 - some insight into what the function of hate is with respect to "like"	 - to analyze this properly, we must take "like" as just an 
+	 - anonymous function l(). 
+	 - logic is sans conotation, sans abiguity, sans symantics
+
+
+need to review DeMorgan's law and how to translate real sentences into logical statements
+
+
+order of quantifiers matters in a statement.
+
+
+The negation of "there exists" (backwards E) -> for all
+The negation of "for all" (upsidedown A) -> there exists
+
+p || !p is a tautology
+
+in general there is no algorhythm that will take in an expression and tell whether or not it is a theorem. What a bummer. Sorry Turing.  
+
+"Microsoft is trying to buy minecraft for 2 Billion dollars". Holy fuck.
+
+
+Captains log: I'm starving. Fever has gone down 
+			    (thank you extra strength tylenol)
+	      Russian guy has massive fingernails.
+	      Not long like they need to be cut. 
+	      Just big. Like really big. 
+
+	      Too hungry to think. Need to stop at home planet 
+	      to refuel.    

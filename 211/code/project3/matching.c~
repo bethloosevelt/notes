@@ -3,30 +3,20 @@
 
 
 int isOpener(char symbol) {
-	for ( int i=0; i<(sizeof(openers)-1); ++i )
-	{
-		if ( symbol == openers[i] )
+	if ( symbol == "(" || symbol == "{" || symbol == "[" || symbol == "<" ) 
 		return 1;
-	}
-	return 0;
+	else 
+		return 0;
+}
+
+int isOpener(char symbol) {
+	if ( symbol == "(" || symbol == "{" || symbol == "[" || symbol == "<" ) 
+		return 1;
+	else 
+		return 0;
 }
 
 int main (void) {
-
-	char* openers = (char*) malloc(sizeof(char)*5);
-	openers[0] = "(";
-	openers[1] = "{";
-	openers[2] = "[";
-	openers[3] = "<";
-	openers[4] = NULL;
-	
-	char* closers = (char*) malloc(sizeof(char)*5);
-	openers[0] = ")";
-	openers[1] = "}";
-	openers[2] = "]";
-	openers[3] = ">";
-	openers[4] = NULL;
-
 
 	int MAXSIZE = 300;
 
@@ -42,11 +32,11 @@ int main (void) {
 	char symbol = " ";
 	for ( int i=0; symbol!=NULL; ++i )
 	{
-		symbol = line[i];
-		if ( isOpener(symbol) )
-			printf("yesss");
+		symbol = *line[i];
+		if ( isOpener(symbol, openers) )
+			printf("\nyes");
 		else
-			printf("noooo");
+			printf("\nno");
 	}
 	
 

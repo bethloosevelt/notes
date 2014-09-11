@@ -2,34 +2,21 @@
 #include <stdlib.h>
 
 
-int isOpener(char symbol, char* openers) {
-	for ( int i=0; i<5; ++i )
-	{
-		if ( symbol == openers[i] )
-		printf("c", openers[i]);
+int isOpener(char symbol) {
+	if ( symbol == "(" || symbol == "{" || symbol == "[" || symbol == "<" ) 
 		return 1;
-	}
-	return 0;
+	else 
+		return 0;
+}
+
+int isCloser(char symbol) {
+	if ( symbol == ")" || symbol == "}" || symbol == "]" || symbol == ">" ) 
+		return 1;
+	else 
+		return 0;
 }
 
 int main (void) {
-	char* openers;
-	char* closers;
-
-	closers = (char*) malloc(sizeof(char)*5);
-	openers = (char*) malloc(sizeof(char)*5);
-	openers[0] = "(";
-	openers[1] = "{";
-	openers[2] = "[";
-	openers[3] = "<";
-	openers[4] = NULL;
-	
-	closers[0] = ")";
-	closers[1] = "}";
-	closers[2] = "]";
-	closers[3] = ">";
-	closers[4] = NULL;
-
 
 	int MAXSIZE = 300;
 
@@ -43,13 +30,16 @@ int main (void) {
 	printf("%s", line);	
 
 	char symbol = " ";
-	for ( int i=0; symbol!=NULL; ++i )
+	while ( symbol != NULL)
 	{
-		symbol = *line[i];
-		if ( isOpener(symbol, openers) )
-			printf("\nyes");
+		symbol = line;
+		printf("c", symbol);
+		(*line)++;
+		if ( isOpener(symbol) )
+			printf("\nopener");
 		else
-			printf("\nno");
+			if ( isCloser(symbol) )
+				printf("\ncloser");
 	}
 	
 
