@@ -2,22 +2,24 @@
 #include <stdlib.h>
 
 
-int isOpener(char symbol) {
+int isOpener(int symbol) {
 	if ( symbol == "(" || symbol == "{" || symbol == "[" || symbol == "<" ) 
 		return 1;
 	else 
 		return 0;
 }
 
-int isCloser(char symbol) {
-	if ( symbol == ")" || symbol == "}" || symbol == "]" || symbol == ">" ) 
+int isCloser(int symbol) {
+	printf("%c", symbol);
+	printf("%d", symbol);
+	if (symbol==(int)")" || symbol==(int)"}" || symbol==(int)"]" || symbol==(int)">") 
 		return 1;
 	else 
 		return 0;
 }
 
 int main (void) {
-
+	int symbol;
 	int MAXSIZE = 300;
 
 	// initialize a character array to store the line read
@@ -29,17 +31,16 @@ int main (void) {
 
 	printf("%s", line);	
 
-	char symbol = " ";
-	while ( symbol != NULL)
+	*line++;
+
+	for (symbol = (*line); symbol != NULL; *line++)
 	{
-		symbol = line;
-		printf("c", symbol);
-		(*line)++;
 		if ( isOpener(symbol) )
 			printf("\nopener");
 		else
-			if ( isCloser(symbol) )
-				printf("\ncloser");
+		if ( isCloser(symbol) )
+			printf("\ncloser");
+		symbol = (*line);
 	}
 	
 
