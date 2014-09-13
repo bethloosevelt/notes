@@ -6,7 +6,6 @@ completed: 09/11/2014
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 int DEBUGMODE=0;
 
@@ -54,7 +53,7 @@ struct Node *createNode() {
 // 	}
 // }
 
-struct Node *push(struct Node *stack, char symbol) {
+Node *push(struct Node *stack, char symbol) {
 	// create a new bode to store symbol
 	struct Node *temp = createNode();
 	temp->data = symbol;
@@ -72,15 +71,13 @@ struct Node *push(struct Node *stack, char symbol) {
 	return stack;
 }
 
-struct Node *pop(struct Node *home) {
+Node *pop(struct Node *home) {
 	// move stack pointer to next node in list
 	// return new stack pointer
 	// this removes the top of the stack
 	// should look into freeing the memory though
 	// as right now I believe it is still allocated for the newly ignored node
-	struct Node *temp = home;
 	home=home->next;
-	free(temp);
  	return home;
 }
 
@@ -149,18 +146,13 @@ void broken(char* line, int index, char symbol) {
 	}	
 }
 
-int main (int argc, char* argv[]) {
+int main (argc, char* argv[]) {
 	int MAXSIZE = 300;
 	int index = 0;
 	char top;
-
-	// check to see if debug mode flag was passed
-	if ( getopt(argc, argv, "d") == 'd') 
-	{
-		printf("Debug mode: on\n");
+	if ( argv[1] == "-d")
 		DEBUGMODE = 1;
-	}
-	
+
 	// initialize a character array to store the line read
 	// in from the console
 	// read in a string of up to 300 characters (NULL included)
@@ -182,7 +174,7 @@ int main (int argc, char* argv[]) {
 		{	
 			stackPointer = push(stackPointer, symbol);
 			if (DEBUGMODE)
-				printf ("pushed\n");
+				printf ("\npushed\n")
 		}
 
 		else
@@ -205,8 +197,6 @@ int main (int argc, char* argv[]) {
 					if (corresponds(top, symbol))
 					{	
 						stackPointer = pop(stackPointer);
-						if (DEBUGMODE)
-							printf("popped\n");
 						continue;
 					}
 
