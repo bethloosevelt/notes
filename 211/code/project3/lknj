@@ -1,0 +1,55 @@
+/*
+Dale Wesa
+UIN: 676019303
+data structures: CS 251
+completed: 09/12/2014
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+// we could make a doubly linked list, 
+// since we will be deleting nodes, 
+struct Node {
+	char identity;
+	Node* next;
+	Node* Previous;
+};
+
+struct Node* deleteNode(Node* toBeDeleted) {
+	// takes toBeDeleted->previous->next = toBeDeleted->next;
+	// then makes toBeDeleted->next->previous = toBeDeleted->previous;
+	// now we can actually delete node
+	// free(toBeDeleted);
+	// return the pointer for the new next node
+}
+
+
+struct Node* createNode() {
+	// create pointer to memory allocated for a node structure
+	struct Node* home;
+	home = (struct Node*) malloc( sizeof(struct Node) );
+	
+	// set values of node to null
+	// there is no data yet to store
+	// and no other nodes to link to
+	home->data = '\0';
+	home->next = NULL;
+	home->previous = NULL
+
+	return home;
+}
+
+struct Node* addNode(struct Node* previousNode, char passengerType) {
+
+	// create a new node with all fields NULL
+	struct Node* newNode = createNode();
+	// set the previous node pointer to the existing node in the list
+	newNode->previous = previousNode;
+	previousNode->next = newNode;
+	// store the passenger type as char in this node
+	newNode->data = passengerType;
+	// return the pointer to this new node, allowing us to then add more new nodes 
+	// directly after this
+	return newNode;
+}
