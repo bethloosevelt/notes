@@ -1,0 +1,12 @@
+0x08048ee6 <phase_1+0>:	push   %ebp
+0x08048ee7 <phase_1+1>:	mov    %esp,%ebp
+0x08048ee9 <phase_1+3>:	sub    $0x8,%esp
+0x08048eec <phase_1+6>:	movl   $0x804a22e,0x4(%esp)
+0x08048ef4 <phase_1+14>:	mov    0x8(%ebp),%eax
+0x08048ef7 <phase_1+17>:	mov    %eax,(%esp)
+0x08048efa <phase_1+20>:	call   0x8048f30 <strings_not_equal>
+0x08048eff <phase_1+25>:	test   %eax,%eax
+0x08048f01 <phase_1+27>:	je     0x8048f08 <phase_1+34>
+0x08048f03 <phase_1+29>:	call   0x8049125 <explode_bomb>
+0x08048f08 <phase_1+34>:	leave  
+0x08048f09 <phase_1+35>:	ret  

@@ -1,0 +1,2 @@
+when using linked lists, make life easier by doing a 
+type def struct Node* nodeptr;

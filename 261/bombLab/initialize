@@ -1,0 +1,55 @@
+Dump of assembler code for function initialize_bomb:
+0x08049348 <initialize_bomb+0>:	push   %ebp
+0x08049349 <initialize_bomb+1>:	mov    %esp,%ebp
+0x0804934b <initialize_bomb+3>:	push   %esi
+0x0804934c <initialize_bomb+4>:	push   %ebx
+0x0804934d <initialize_bomb+5>:	sub    $0x2050,%esp
+0x08049353 <initialize_bomb+11>:	movl   $0x8049419,0x4(%esp)
+0x0804935b <initialize_bomb+19>:	movl   $0x2,(%esp)
+0x08049362 <initialize_bomb+26>:	call   0x8048704 <signal@plt>
+0x08049367 <initialize_bomb+31>:	movl   $0x40,0x4(%esp)
+0x0804936f <initialize_bomb+39>:	lea    -0x48(%ebp),%eax
+0x08049372 <initialize_bomb+42>:	mov    %eax,(%esp)
+0x08049375 <initialize_bomb+45>:	call   0x8048854 <gethostname@plt>
+0x0804937a <initialize_bomb+50>:	test   %eax,%eax
+0x0804937c <initialize_bomb+52>:	jne    0x8049391 <initialize_bomb+73>
+0x0804937e <initialize_bomb+54>:	mov    0x804b6c0,%eax
+0x08049383 <initialize_bomb+59>:	mov    $0x0,%ebx
+0x08049388 <initialize_bomb+64>:	lea    -0x48(%ebp),%esi
+0x0804938b <initialize_bomb+67>:	test   %eax,%eax
+0x0804938d <initialize_bomb+69>:	jne    0x80493a9 <initialize_bomb+97>
+0x0804938f <initialize_bomb+71>:	jmp    0x80493f7 <initialize_bomb+175>
+0x08049391 <initialize_bomb+73>:	movl   $0x804a4d8,(%esp)
+0x08049398 <initialize_bomb+80>:	call   0x8048874 <puts@plt>
+0x0804939d <initialize_bomb+85>:	movl   $0x8,(%esp)
+0x080493a4 <initialize_bomb+92>:	call   0x80488a4 <exit@plt>
+0x080493a9 <initialize_bomb+97>:	mov    %esi,0x4(%esp)
+0x080493ad <initialize_bomb+101>:	mov    %eax,(%esp)
+0x080493b0 <initialize_bomb+104>:	call   0x8048824 <strcasecmp@plt>
+0x080493b5 <initialize_bomb+109>:	test   %eax,%eax
+0x080493b7 <initialize_bomb+111>:	je     0x80493c9 <initialize_bomb+129>
+0x080493b9 <initialize_bomb+113>:	add    $0x1,%ebx
+0x080493bc <initialize_bomb+116>:	mov    0x804b6c0(,%ebx,4),%eax
+0x080493c3 <initialize_bomb+123>:	test   %eax,%eax
+0x080493c5 <initialize_bomb+125>:	je     0x80493f7 <initialize_bomb+175>
+0x080493c7 <initialize_bomb+127>:	jmp    0x80493a9 <initialize_bomb+97>
+0x080493c9 <initialize_bomb+129>:	lea    -0x2048(%ebp),%ebx
+0x080493cf <initialize_bomb+135>:	mov    %ebx,(%esp)
+0x080493d2 <initialize_bomb+138>:	call   0x8049480 <init_driver>
+
+0x080493d7 <initialize_bomb+143>:	test   %eax,%eax
+0x080493d9 <initialize_bomb+145>:	jns    0x804940f <initialize_bomb+199>
+0x080493db <initialize_bomb+147>:	mov    %ebx,0x4(%esp)
+0x080493df <initialize_bomb+151>:	movl   $0x804a374,(%esp)
+0x080493e6 <initialize_bomb+158>:	call   0x8048814 <printf@plt>
+0x080493eb <initialize_bomb+163>:	movl   $0x8,(%esp)
+0x080493f2 <initialize_bomb+170>:	call   0x80488a4 <exit@plt>
+0x080493f7 <initialize_bomb+175>:	movl   $0x804a510,(%esp)
+0x080493fe <initialize_bomb+182>:	call   0x8048874 <puts@plt>
+0x08049403 <initialize_bomb+187>:	movl   $0x8,(%esp)
+0x0804940a <initialize_bomb+194>:	call   0x80488a4 <exit@plt>
+0x0804940f <initialize_bomb+199>:	add    $0x2050,%esp
+0x08049415 <initialize_bomb+205>:	pop    %ebx
+0x08049416 <initialize_bomb+206>:	pop    %esi
+0x08049417 <initialize_bomb+207>:	pop    %ebp
+0x08049418 <initialize_bomb+208>:	ret  

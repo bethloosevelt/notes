@@ -1,0 +1,18 @@
+arrays are much faster than linked list since we can store the array in cache. 
+
+also there is less to store, as we don't have to keep track of the pointers to i
+neighboring nodes. 
+
+In summary, fuck linked lists, they are too much work. Just re-alloc your array like a proper human being. 
+
+will link example code of allocating an array of nodes for a heap.
+C++ actually allows dynamic arrays now.
+
+
+Heap doesn't allow sort, it just allows us to find the minimum value easily. and insert quickly.
+
+Binary search tree allows us to search quickly. 
+
+when pulling the top node off the heap, make the heap one node smaller and store the pulled node on the bottom. This way we know where it is wihtoug more memory, and we know where the next smallest value is (root of the heap)
+
+- allows us to store in order the values we pull from the heap at the remaining spots in our array after the heap 

@@ -17,12 +17,14 @@ struct Node {
 	struct Node* previous;
 };
 
-// void struct Node* deleteNode(Node* &toBeDeleted) {
-// 	// takes toBeDeleted->previous->next = toBeDeleted->next;
-// 	// then makes toBeDeleted->next->previous = toBeDeleted->previous;
-// 	// now we can actually delete node
-// 	// free(toBeDeleted);
-// }
+struct Node* deleteNode(struct Node* toBeDeleted) {
+	//printf("\ndeleting%d", toBeDeleted);
+	toBeDeleted->previous->next = toBeDeleted->next;
+	toBeDeleted->next->previous = toBeDeleted->previous;
+	struct Node* nextHome = toBeDeleted;
+	free(toBeDeleted);
+	return nextHome;
+}
 
 
 struct Node* createNode(char passengerType) {
@@ -65,6 +67,7 @@ struct Node* createList(FILE* filePointer) {
 		previousNode = addNode(previousNode, identity);
 		identity = getc(filePointer);
 	}
+	headNode->previous = previousNode;
 	previousNode->next = headNode;
 	return headNode; 
 }
@@ -72,13 +75,10 @@ struct Node* createList(FILE* filePointer) {
 
 void printList(struct Node* head) {
 	struct Node* home = head;
-	printf("\n%c", (*head).identity);
-	
-	head = head->next;
+	home = home->next;
 	while (head != home)
 	{	
-		printf("\n%c", (*head).identity);
-		head = head->next;
+		home = home->next;
 	}
 }
 
@@ -94,11 +94,20 @@ int sizeOfList(struct Node* head) {
 	return count;
 }
 
+int stillHasAndroids(struct Node* head) {
+	for(int i=0; i< sizeOfList(head); ++i)
+	{
+		if ((*head).identity == 'a' || (*head).identity == 'A')
+			return 1;
+		head = head->next;
+	}
+	return 0;
+}
+
 
 char* concat(char *s1, char *s2)
 {
-    char *result = malloc(strlen(s1)+strlen(s2)+1);//+1 for the zero-terminator
-    //in real code you would check for errors in malloc here
+    char *result = malloc(strlen(s1)+strlen(s2)+1);
     strcpy(result, s1);
     strcat(result, s2);
     return result;
@@ -130,26 +139,66 @@ struct Node* copyList(struct Node* originalHome) {
 		originalHead = originalHead->next;
 		identity = (*originalHead).identity;
 	}
+	copyHome->previous = previousNodeCopy;
 	previousNodeCopy->next = copyHome;
 	return copyHome; 
 
 }
 
-// int search(struct Node* list)
 
+struct Node* nextNode(struct Node* startingPoint, int steps) {
+	for(int i=0; i<steps; ++i)
+		startingPoint = startingPoint->next;
+	return startingPoint;
+}
+
+
+int search(struct Node* copy, int counter) {
+	struct Node* next = nextNode(copy, counter);
+	struct Node* this = next;
+	if ( (*this).identity == 'a' || (*this).identity == 'A' )
+	{
+		//printf("\nfound droid: %d", counter);
+		next = deleteNode(this);
+		if (!(stillHasAndroids(copy)))
+		{
+			return 1;
+		}
+	    return search(next, counter);
+	}
+	else
+	{	
+		if (!stillHasAndroids(copy))
+		{	
+			//printf("no more droids");
+			return 1;
+		}
+	}
+	return 0;
+}
 
 
 int main (int argc, char* argv[]) {
 
 	// prompt user for filename
 	char* fileName = getFileName();
-	printf("filename is: %s", fileName);
 	FILE *filePointer = fopen(concat("./", fileName), "r");
 
 	struct Node* list = createList(filePointer);
 	printf("%d", sizeOfList(list));
 	struct Node* copyoflist = copyList(list);
 	printList(copyoflist);
+	struct Node* copy = NULL;
+	for (int counter = 1; counter < sizeOfList(list); counter++)
+	{
+		copy = copyList(list);
+		if ( search(copy, counter) )
+		{
+			printf("\nThe magic number is: %d\n", counter);
+			return 0;	
+		}
+	}
 
+	printf("\n**there is no solution**\n");
 	return 0;
 }

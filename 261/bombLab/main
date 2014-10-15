@@ -1,0 +1,87 @@
+Dump of assembler code for function main:
+0x08048994 <main+0>:	lea    0x4(%esp),%ecx
+0x08048998 <main+4>:	and    $0xfffffff0,%esp
+0x0804899b <main+7>:	pushl  -0x4(%ecx)
+0x0804899e <main+10>:	push   %ebp
+0x0804899f <main+11>:	mov    %esp,%ebp
+0x080489a1 <main+13>:	push   %ebx
+0x080489a2 <main+14>:	push   %ecx
+0x080489a3 <main+15>:	sub    $0x10,%esp
+0x080489a6 <main+18>:	mov    (%ecx),%eax
+0x080489a8 <main+20>:	mov    0x4(%ecx),%ebx
+0x080489ab <main+23>:	cmp    $0x1,%eax
+0x080489ae <main+26>:	jne    0x80489bc <main+40>
+0x080489b0 <main+28>:	mov    0x804b8c4,%eax
+0x080489b5 <main+33>:	mov    %eax,0x804b8d8
+0x080489ba <main+38>:	jmp    0x8048a20 <main+140>
+0x080489bc <main+40>:	cmp    $0x2,%eax
+0x080489bf <main+43>:	jne    0x8048a02 <main+110>
+0x080489c1 <main+45>:	movl   $0x804a0cc,0x4(%esp)
+0x080489c9 <main+53>:	mov    0x4(%ebx),%eax
+0x080489cc <main+56>:	mov    %eax,(%esp)
+0x080489cf <main+59>:	call   0x80487e4 <fopen@plt>
+0x080489d4 <main+64>:	mov    %eax,0x804b8d8
+0x080489d9 <main+69>:	test   %eax,%eax
+0x080489db <main+71>:	jne    0x8048a20 <main+140>
+0x080489dd <main+73>:	mov    0x4(%ebx),%eax
+0x080489e0 <main+76>:	mov    %eax,0x8(%esp)
+0x080489e4 <main+80>:	mov    (%ebx),%eax
+0x080489e6 <main+82>:	mov    %eax,0x4(%esp)
+0x080489ea <main+86>:	movl   $0x804a0ce,(%esp)
+0x080489f1 <main+93>:	call   0x8048814 <printf@plt>
+0x080489f6 <main+98>:	movl   $0x8,(%esp)
+0x080489fd <main+105>:	call   0x80488a4 <exit@plt>
+0x08048a02 <main+110>:	mov    (%ebx),%eax
+0x08048a04 <main+112>:	mov    %eax,0x4(%esp)
+0x08048a08 <main+116>:	movl   $0x804a0eb,(%esp)
+0x08048a0f <main+123>:	call   0x8048814 <printf@plt>
+0x08048a14 <main+128>:	movl   $0x8,(%esp)
+---Type <return> to continue, or q <return> to quit---
+0x08048a1b <main+135>:	call   0x80488a4 <exit@plt>
+0x08048a20 <main+140>:	call   0x8049348 <initialize_bomb>
+0x08048a25 <main+145>:	movl   $0x804a150,(%esp)
+0x08048a2c <main+152>:	call   0x8048874 <puts@plt>
+0x08048a31 <main+157>:	movl   $0x804a18c,(%esp)
+0x08048a38 <main+164>:	call   0x8048874 <puts@plt>
+0x08048a3d <main+169>:	call   0x8049235 <read_line>
+0x08048a42 <main+174>:	mov    %eax,(%esp)
+0x08048a45 <main+177>:	call   0x8048ee6 <phase_1>
+0x08048a4a <main+182>:	call   0x804908c <phase_defused>
+0x08048a4f <main+187>:	movl   $0x804a1b8,(%esp)
+0x08048a56 <main+194>:	call   0x8048874 <puts@plt>
+0x08048a5b <main+199>:	call   0x8049235 <read_line>
+0x08048a60 <main+204>:	mov    %eax,(%esp)
+0x08048a63 <main+207>:	call   0x8048d1b <phase_2>
+0x08048a68 <main+212>:	call   0x804908c <phase_defused>
+0x08048a6d <main+217>:	movl   $0x804a105,(%esp)
+0x08048a74 <main+224>:	call   0x8048874 <puts@plt>
+0x08048a79 <main+229>:	call   0x8049235 <read_line>
+0x08048a7e <main+234>:	mov    %eax,(%esp)
+0x08048a81 <main+237>:	call   0x8048e47 <phase_3>
+0x08048a86 <main+242>:	call   0x804908c <phase_defused>
+0x08048a8b <main+247>:	movl   $0x804a123,(%esp)
+0x08048a92 <main+254>:	call   0x8048874 <puts@plt>
+0x08048a97 <main+259>:	call   0x8049235 <read_line>
+0x08048a9c <main+264>:	mov    %eax,(%esp)
+0x08048a9f <main+267>:	call   0x8048dd9 <phase_4>
+0x08048aa4 <main+272>:	call   0x804908c <phase_defused>
+0x08048aa9 <main+277>:	movl   $0x804a1e4,(%esp)
+0x08048ab0 <main+284>:	call   0x8048874 <puts@plt>
+0x08048ab5 <main+289>:	call   0x8049235 <read_line>
+0x08048aba <main+294>:	mov    %eax,(%esp)
+0x08048abd <main+297>:	call   0x8048d67 <phase_5>
+0x08048ac2 <main+302>:	call   0x804908c <phase_defused>
+0x08048ac7 <main+307>:	movl   $0x804a132,(%esp)
+0x08048ace <main+314>:	call   0x8048874 <puts@plt>
+0x08048ad3 <main+319>:	call   0x8049235 <read_line>
+0x08048ad8 <main+324>:	mov    %eax,(%esp)
+---Type <return> to continue, or q <return> to quit---
+0x08048adb <main+327>:	call   0x8048c2a <phase_6>
+0x08048ae0 <main+332>:	call   0x804908c <phase_defused>
+0x08048ae5 <main+337>:	mov    $0x0,%eax
+0x08048aea <main+342>:	add    $0x10,%esp
+0x08048aed <main+345>:	pop    %ecx
+0x08048aee <main+346>:	pop    %ebx
+0x08048aef <main+347>:	pop    %ebp
+0x08048af0 <main+348>:	lea    -0x4(%ecx),%esp
+0x08048af3 <main+351>:	ret 
