@@ -1,0 +1,62 @@
+A single in struction in a pipeline takes more time than a single instruction in a non-pipeline machine
+	- overhead
+	- stalling { between instructions }
+	- unbalanced stage times
+	- have to stall on a return because you need to know where you are 
+	going after the return { the return address is on the stack }
+		- take the address off of the stack, put it in the program 
+		counter, then we can go get our next instruction
+	-  
+
+
+Problems with multi stage pipelines (he gave 30 as the exampler)
+	- overhead { each size of the piece gets closer to the overhead size }
+	- ineficient
+	- lots of stalls
+
+misprediction ( of the program counter )
+	there are three types of prediction
+	{ this is where the processor tries to anticipate where a jump call will take us } 
+	Prediction is used in things like if statements, cases, etc 
+	- which begs the question: which is more likely? the if or the else?
+		based on just trends of coding style the compiler for y8x asm
+		will favor the /then/ case
+
+	While or for loops also utelize prediction
+	- we write them so that they favor execution.
+		- if a loop runs 1000 times etc, this extra branching
+		adds up quick
+	This can get more complicated. ~based on whether the prediction was
+	wrong, we can adjust our prediction next time we reach that branch
+
+	pipeline? : 
+	IF ID EX   M WB
+		 ^-----Where we know whether the branch was taken (JDE)
+	This could be moved up in the line with more hardware. 
+	what happens when a prediction is made? 
+		the line is fetched, then decoded
+		while decoded, the one after is fetched. (We have the M and WB c		ycles to do things before we execute again)	
+	So what about when we are wrong?
+		- it looks like we stalled, but we don't. why?
+		- we just move on to the next instruction. 
+		The branching instruction didn't change anythin if it was false
+		- here it would look like 2 stalls if we were wrong
+		one for each instruction that we started but had to throw away
+
+Forwarding
+	take for example
+	addl  %eax, %ebx   ; store the result of the add into eax
+	addl  %ecx, %ebx   ; use it again
+
+a	IF ID EX M WB
+b	   IF ID   ^----BUT the right value isn't in ebx until the result is 
+			written
+	so we have to hangout in the Decode until the last instruction writes the propper value. { this is without forwarding }
+	
+	with forwarding, we can get the value to the next line right after 
+	execution. { there are actually wires that let us grab the result of the
+		     instruction from the execution phase }
+
+What is hcl code? I think this is part of what makes up the JVM
+
+
