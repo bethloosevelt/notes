@@ -40,4 +40,14 @@ Sets
 
 	I'm really really thirsty
 
+	set identities: pretty much common sense when you think about it 
+	won't write much about it here
+	-> draw your venn diagrams and it's clear as day
 	
+		-Notation "u" -> union   "n" -> intersection
+
+	demorgans law is still applicabler
+		!(AuB) = !A n !B	
+		!(AnB) = !A u !B
+
+	Russian kid tried to solve a paradox today. There is grey matter along the east wall of the lecture hall. To nobodies surprise, there isn't much of it. 
