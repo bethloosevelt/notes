@@ -1,0 +1,43 @@
+Lets talk PRoBabiLiTy
+
+Women in comp sci Tuesday October 21 @ 4:30 1047 ERF
+
+2nd women in CS meeting wednesday oct 22nd seo 1000 5pm
+
+----------------------------------------------------------
+
+Sets
+	-power set pow(A)::={S|Sc_A}
+	set of all possible subsets, including empty set.
+	
+	-> pow(abc) :: 
+		{ {a}, {b}, {c}, {a,b}, {b,c}, {a,c}, {a,b,c}, {} }
+
+		number of elements of pow(a) = 2^n where n is the number of
+		elements in a : <- this is called P(n) (proposition)
+
+	prove with induction:
+		the base case is n=0
+		pow({}) = {{}}
+		still true. has 2^0 elements.
+
+	inductive step, P(n-1) -> P(n) 
+	p(n-1) in this case is p(0) 
+	P(n+1) = 2^(n+1) is implied by induction
+	this is proved by saying, 
+	
+	pow(1) = 2
+	where pow(1) = { {}, {1} }
+		- Therefore p(n) is true :: # elem in pow(a) = 2^n
+
+	"assuming that when A has n-1 elements powerset of A has 2^n-1 elements
+	we need to show that when a has n elements pow(a) has 2^n elements"
+
+	Union of the old set and a new set the new element is inserted into eac
+	subset of the old set.
+
+	What is a proper subset?
+
+	I'm really really thirsty
+
+	
