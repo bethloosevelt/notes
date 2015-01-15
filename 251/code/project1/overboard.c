@@ -2,7 +2,7 @@
 Dale Wesa
 UIN: 676019303
 data structures: CS 251
-completed: 09/12/2014
+completed: 01/15/2015
 */
 #include <stdio.h>
 #include <string.h>
