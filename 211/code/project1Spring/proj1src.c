@@ -6,24 +6,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int* expandArr(int size, int* oldArr)
-{	
-	// declare a new integer array pointer
-	// whos size is just right for the number of ints we have to store
-	int* newArr = (int*)malloc( size*sizeof(int) );
-
-	for (int i=0; i<size; i++)
-		newArr[i] = oldArr[i];
-	free(oldArr);
-
-	return newArr;	
-}
-
 int main() {
 	// initialize our variables, including a pointer to the beginning of
 	// the array of input integers. 
 	// note its size will change as we input more and more numbers
-	int *arr = (int*)malloc(sizeof(int));
+	int *arr = calloc(1, sizeof(int));
 	int val;
 	int size = 0;
 
@@ -32,10 +19,8 @@ int main() {
 	{
 		// store the value in the array	
 		arr[size] = val;
-		// increase the size of the array to reflect the number of stored ints
 		size++;
-		// expand the array for another integer
-		arr = expandArr(size, arr);
+		arr = realloc(arr, size * sizeof(int));
 
 		scanf("%d", &val);
 	}
@@ -43,5 +28,5 @@ int main() {
 	for( int i=0; i<size; i++)
 		printf("%d\n", arr[i]);
 
-return 0;
+        return 0;
 }
