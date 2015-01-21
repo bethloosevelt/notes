@@ -1,0 +1,19 @@
+in lab come prepared with a program that will allow us to test different sorting algorhythms. we will stress test in partners on the CS machines 
+
+
+Ram model of computation
+	why does a program take different times on server or home machine?
+	
+	load from other users
+	different compiler optimizations
+		register vars vs memory vars
+	different architectures (core number and speed)
+
+================================================================================
+journal:
+	we assume the earth is flat because for all intents and purposes, the structure we is building is SIGNIFICANTLY smaller than the curved surface of the earth. Taking into acount the scale of these two objects, it makes sense t oassume that it is flat. Yes it is untrue, but it is useful. 
+
+	Simmilarly, we want to give ourselves this same idea of relative scale when considering different algorhythms and their implimentations. While we may equivicate things like multiplication and addition--a technically false assumption, it is still usefull because in comparasin to the next rung of complexity, say compared to a function call, or a loop, it is significantly smaller. It would take thousands of addition procs to get to the next rung of a function. and still it will only count once, where as a loop is compounding. 
+================================================================================
+
+	
