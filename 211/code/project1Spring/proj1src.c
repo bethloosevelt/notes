@@ -28,6 +28,7 @@ int cmpfunc (const void * a, const void * b) {
    return ( *(int*)a - *(int*)b );
 }
 
+// not finished
 int* linSearch (int* arr, int size, int searchingFor) {
 	int found = 0;
 	int* retVals = calloc(2, sizeof(int));
@@ -54,10 +55,10 @@ int main() {
 	while( val != -999)
 	{
 		// store the value in the array	
-		arr[size] = val;
+		
 		size++;
 		arr = realloc(arr, size * sizeof(int));
-
+		arr[size-1] = val;
 		scanf("%d", &val);
 	}
 
