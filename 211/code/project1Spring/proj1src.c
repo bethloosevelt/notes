@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//             ARRAY UTILS                 \\
+//             ARRAY UTILS                 
 int* copyArray (int size, int* originalArray) {
 	int* newArray = calloc(size, sizeof(int));
 
@@ -50,7 +50,7 @@ int main() {
 	int size = 0;
 
 
-	scanf("%d", &val);
+	scanf(" %d", &val);
 	while( val != -999)
 	{
 		// store the value in the array	
