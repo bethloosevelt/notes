@@ -56,7 +56,9 @@ int* linSearch (int* arr, int size, int searchingFor) {
 	return retVals;
 }
 
-int* binSearch(int* arr, 
+int* binSearch(int* arr, int arrSize) {
+	int found = 0;
+} 
 
 
 
