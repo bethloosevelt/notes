@@ -10,14 +10,11 @@
 
 using namespace std;
 
-
 struct Node {
     char* word;
     int year;
     int wordCount;
     int uniqueTextCount;
-    Node* next;
-    Node* prev;
 };
 
 
@@ -27,6 +24,9 @@ struct shaNode {
     shaNode* next;
     shaNode* prev;
 };
+
+// grab a large chunk of memory for our main data array
+Node masterList[2000000];
 
 
 // hashing function taken from stackoverflow
@@ -62,16 +62,7 @@ int main()
     unsigned sha;
     int index = 1;  // not zero because we will have our dummy node be the 0th index
     int hashTableSize = 0;
-
-    //////////////////////////////////////
-    //    Create a dummy node to begin our main data linked list
-    Node *head = new Node;
-    head->next = NULL;
-    head->prev = NULL;
-    head->word = (char*)calloc(81, sizeof(char));
-    head->word = "head_node_please_ignore";
-    Node *previousNode = head;
-    //////////////////////////////////////
+    Node dataPoint = new Node;
 
     // initialize hash table linked list with a dummy head node
     shaNode *shaHead = new shaNode;
@@ -86,9 +77,9 @@ int main()
         // check if this is a new word
         // if it is a new word { calculate sha, store [sha, word, startingIndex] into hash table IN ORDER of what the sha is}
         // if it is a new word { change the current to the value of new word }
-
-        printf("%s\t%s\n", word, previousNode->word );
-        if ( strcmp(word, previousNode->word) ) {  // if this is a new word
+	if ( index != 0)
+        	printf("%s\t%s\n", word, masterList[index-1].word );
+        if ( strcmp(word, previousNode->word) && index!=0 ) {  // if this is a new word
                                                        // create a new sha node and add it to the list
             sha = hash_str(word);
             shaNode *tempShaNode = new shaNode;
@@ -102,20 +93,14 @@ int main()
         }
 
 
-        
-        Node *dataPoint = new Node;        // create a new node for the data we read in
-        previousNode->next = dataPoint;    // set the previous node's next field to the new node
-        dataPoint->prev = previousNode;        // set the new nodes prev field to the last node
-        
-        
-        dataPoint->word = (char*)calloc(81, sizeof(char));
-        dataPoint->word = word;            
-        dataPoint->wordCount = wordCount;
-        dataPoint->uniqueTextCount = uniqueTextCount;
+        dataPoint.word = (char*)calloc(81, sizeof(char));
+        dataPoint.word = word;            
+        dataPoint.wordCount = wordCount;
+        dataPoint.uniqueTextCount = uniqueTextCount;
+	
+	masterList[ index ] = tempData;
 
-
-        index++;
-        previousNode = dataPoint;        // point our bookmark "previous node" at our new node, preparing for more 
+        index++; 
 
     }
      
