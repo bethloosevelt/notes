@@ -26,7 +26,7 @@ struct shaNode {
 };
 
 // grab a large chunk of memory for our main data array
-Node masterList[2000000];
+Node masterList[20000000];
 
 
 // hashing function taken from stackoverflow
@@ -45,7 +45,15 @@ unsigned hash_str(const char* s)
    return h; // or return h % C;
 }
 
- 
+// needed for use with qsort
+int cmpfunc (const void * a, const void * b) {
+  if ( a->sha <  *(MyType*)b ) return -1;
+  if ( *(MyType*)a == *(MyType*)b ) return 0;
+  if ( *(MyType*)a >  *(MyType*)b ) return 1;
+}
+
+
+
  
 int main()
 {
@@ -60,55 +68,55 @@ int main()
     int wordCount;
     int uniqueTextCount;
     unsigned sha;
-    int index = 1;  // not zero because we will have our dummy node be the 0th index
+    int index = 0;
     int hashTableSize = 0;
-    Node dataPoint = new Node;
-
-    // initialize hash table linked list with a dummy head node
-    shaNode *shaHead = new shaNode;
-    shaHead->next = NULL;
-    shaHead->prev = NULL;
-    shaHead->sha = 0;
-    shaHead->index = 0;
-    shaNode *previousShaNode = shaHead;
+    int shaIndex = 0;
+    int shaSize = 0;
+    Node dataPoint;
+    // initialize table of hashes with room for a single hash
+    shaNode* shaTable = calloc(1, sizeof(shaNode));
 
     while( fscanf( inFile, "%s %d %d %d", word, &year, &wordCount, &uniqueTextCount) != EOF) {
         // store in as a node in our master structure
         // check if this is a new word
         // if it is a new word { calculate sha, store [sha, word, startingIndex] into hash table IN ORDER of what the sha is}
         // if it is a new word { change the current to the value of new word }
-	if ( index != 0)
-        	printf("%s\t%s\n", word, masterList[index-1].word );
-        if ( strcmp(word, previousNode->word) && index!=0 ) {  // if this is a new word
-                                                       // create a new sha node and add it to the list
-            sha = hash_str(word);
-            shaNode *tempShaNode = new shaNode;
-            tempShaNode->sha   = sha;
-            tempShaNode->index = index;
-            tempShaNode->next = NULL;
-            
-            previousShaNode->next = tempShaNode;     // set the previous node's next field to the new node
-            tempShaNode->prev = previousShaNode;     // set the new nodes prev field to the last node
-            previousShaNode = tempShaNode;           // reset the previous node pointer so it reflects the last node
+	    if ( index != 0) {
+    
+            if ( strcmp(word, masterList[ index-1 ].word) != 0) {  // if this is a new word
+                                                           // create a new sha node and add it to the list
+                sha = hash_str(word);
+                shaNode *tempShaNode = new shaNode;
+                tempShaNode.sha     = sha;
+                tempShaNode.index   = index;
+
+                shaSize++;
+                realloc(shaTable, shaSize)
+
+                shaIndex++;
+            }
+        
         }
 
-
         dataPoint.word = (char*)calloc(81, sizeof(char));
-        dataPoint.word = word;            
+        memcpy(dataPoint.word, word, 81);       
         dataPoint.wordCount = wordCount;
         dataPoint.uniqueTextCount = uniqueTextCount;
 	
-	masterList[ index ] = tempData;
+	    masterList[ index ] = dataPoint;
 
         index++; 
 
     }
-     
+
+    qsort(shaHead, shaSize, sizeof(unsigned), cmpfunc;
+    
     shaNode *playHead = shaHead;
     while ( playHead->next != NULL ) {
         printf( "%u\t%d\t\n", playHead->sha, playHead->index);
         playHead = playHead->next;
     }
-
+    
+    printf("\nwow there were %d words in that damn file", words);
     return 0;
 }
