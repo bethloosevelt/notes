@@ -3,6 +3,9 @@
 #include <iostream>
 #include <climits>
 #include <string>
+#include <stdlib.h>
+#include <stdio.h>
+#include <cstring>
 
 #define A 54059 /* a prime */
 #define B 76963 /* another prime */
@@ -21,8 +24,6 @@ struct Node {
 struct shaNode {
     unsigned sha;
     int index;
-    shaNode* next;
-    shaNode* prev;
 };
 
 // grab a large chunk of memory for our main data array
@@ -47,11 +48,35 @@ unsigned hash_str(const char* s)
 
 // needed for use with qsort
 int cmpfunc (const void * a, const void * b) {
-  if ( a->sha <  *(MyType*)b ) return -1;
-  if ( *(MyType*)a == *(MyType*)b ) return 0;
-  if ( *(MyType*)a >  *(MyType*)b ) return 1;
+  if ( ((*(shaNode*)a).sha) <  ((*(shaNode*)b).sha) ) return -1;
+  if ( ((*(shaNode*)a).sha) == ((*(shaNode*)b).sha) ) return 0;
+  if ( ((*(shaNode*)a).sha) >  ((*(shaNode*)b).sha) ) return 1;
 }
 
+
+// binary search alg
+int binSearch(shaNode* array, int size, int searchValue) {
+	int low = 0;
+    int high = size - 1;
+    int mid;
+ 
+    while (low <= high)
+    {	mid = (low + high) / 2;
+ 
+        if(searchValue == array[mid].sha)
+        {	return array[mid].index;
+        }
+        else if (searchValue > array[mid].sha)
+        {	low = mid + 1;
+        }
+        else
+        {	high = mid - 1;
+        }
+    }
+
+    // at this point, nothing has been found so we should return a -1 value
+    return -1;
+}
 
 
  
@@ -74,7 +99,7 @@ int main()
     int shaSize = 0;
     Node dataPoint;
     // initialize table of hashes with room for a single hash
-    shaNode* shaTable = calloc(1, sizeof(shaNode));
+    shaNode* shaTable = (shaNode*)calloc(1, sizeof(shaNode));
 
     while( fscanf( inFile, "%s %d %d %d", word, &year, &wordCount, &uniqueTextCount) != EOF) {
         // store in as a node in our master structure
@@ -86,37 +111,42 @@ int main()
             if ( strcmp(word, masterList[ index-1 ].word) != 0) {  // if this is a new word
                                                            // create a new sha node and add it to the list
                 sha = hash_str(word);
-                shaNode *tempShaNode = new shaNode;
-                tempShaNode.sha     = sha;
-                tempShaNode.index   = index;
-
+                shaNode tempShaNode;
+                tempShaNode.sha      = sha;
+                tempShaNode.index    = index;
+                
                 shaSize++;
-                realloc(shaTable, shaSize)
+                if( shaSize>1 )
+                	shaTable = (shaNode*)realloc(shaTable, sizeof(shaNode)*shaSize);
 
+                shaTable[ shaIndex ] = tempShaNode;
                 shaIndex++;
             }
-        
         }
 
         dataPoint.word = (char*)calloc(81, sizeof(char));
-        memcpy(dataPoint.word, word, 81);       
+        memcpy(dataPoint.word, word, 81); 
+        dataPoint.year = year;      
         dataPoint.wordCount = wordCount;
         dataPoint.uniqueTextCount = uniqueTextCount;
 	
 	    masterList[ index ] = dataPoint;
 
-        index++; 
-
+        index++;
     }
 
-    qsort(shaHead, shaSize, sizeof(unsigned), cmpfunc;
-    
-    shaNode *playHead = shaHead;
-    while ( playHead->next != NULL ) {
-        printf( "%u\t%d\t\n", playHead->sha, playHead->index);
-        playHead = playHead->next;
-    }
-    
-    printf("\nwow there were %d words in that damn file", words);
+
+    qsort(shaTable, shaSize, sizeof(shaNode), cmpfunc);
+
+	printf("\nWhat word would you like to know about?  ");
+	char searchTerm[ 81];
+	scanf(" %s", searchTerm);
+
+	unsigned search = hash_str(searchTerm);
+	int mainSearchIndex = binSearch(shaTable, shaSize, search);
+	printf("the data is located at index: %d\n", mainSearchIndex );
+	for(int i=0; strcmp(masterList[mainSearchIndex].word, masterList[mainSearchIndex + i].word) == 0; i++) {
+		printf("word: %s\n year: %d\n freq: %d\n texts: %d\n", masterList[mainSearchIndex+i].word, masterList[mainSearchIndex+i].year, masterList[mainSearchIndex+i].wordCount, masterList[mainSearchIndex].uniqueTextCount );
+	}
     return 0;
 }
