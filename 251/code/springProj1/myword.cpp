@@ -26,14 +26,26 @@ struct shaNode {
     int index;
 };
 
+struct  aveNode {
+    int firstYear;
+    int lastYear;
+    int average;
+};
+
 // grab a large chunk of memory for our main data array
 Node masterList[20000000];
-
 
 // hashing function taken from stackoverflow
 // takes in a string, multiplies each letter by large primes, xors that result with 
 // the product of two other large primes (see defined above) the result is then returned for use
 // as a sha
+
+
+// void addAverageNode(aveNode* aveList, int aveSize, int firstYear, int lastYear, int average) {
+
+   
+// }
+
 
 char fileName[]="all_words.csv";
 unsigned hash_str(const char* s)
@@ -144,9 +156,41 @@ int main()
 
 	unsigned search = hash_str(searchTerm);
 	int mainSearchIndex = binSearch(shaTable, shaSize, search);
+
+    int firstYear = masterList[ mainSearchIndex ].year;
+    aveNode* aveList = (aveNode*) calloc(1, sizeof(aveNode));
+
+    int aveSize = 0;
+    int average = 0;
+    int lastYear = 0;
+
 	printf("the data is located at index: %d\n", mainSearchIndex );
 	for(int i=0; strcmp(masterList[mainSearchIndex].word, masterList[mainSearchIndex + i].word) == 0; i++) {
-		printf("word: %s\n year: %d\n freq: %d\n texts: %d\n", masterList[mainSearchIndex+i].word, masterList[mainSearchIndex+i].year, masterList[mainSearchIndex+i].wordCount, masterList[mainSearchIndex].uniqueTextCount );
-	}
+		//printf("word: %s\n year: %d\n freq: %d\n texts: %d\n", masterList[mainSearchIndex+i].word, masterList[mainSearchIndex+i].year, masterList[mainSearchIndex+i].wordCount, masterList[mainSearchIndex+i].uniqueTextCount );
+	   
+        average += masterList[ mainSearchIndex + i ].wordCount;
+        if( (i!=0 && i%5 == 0) || !(strcmp(masterList[mainSearchIndex].word, masterList[mainSearchIndex + i + 1].word) == 0) )  {  // every fifth term start a new average and save the span of years
+            lastYear = masterList[ mainSearchIndex + i ].year;
+            aveSize++;
+
+            if( aveSize > 1)
+                aveList = (aveNode*) realloc(aveList, sizeof(aveNode)*aveSize );
+
+            aveList[aveSize-1].firstYear = firstYear;
+            aveList[aveSize-1].lastYear  = lastYear;
+            aveList[aveSize-1].average   = average;
+
+            average = 0;
+            firstYear = masterList[ mainSearchIndex + i + 1 ].year;
+        }
+    }
+
+    // print average list
+    for ( int i=0; i<aveSize; i++)
+        printf(" %d\t%d\t%d\n", aveList[i].firstYear, aveList[i].lastYear, aveList[i].average);
+
+
+
+
     return 0;
 }
