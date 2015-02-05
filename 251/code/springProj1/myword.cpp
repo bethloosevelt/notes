@@ -32,6 +32,14 @@ struct  aveNode {
     int average;
 };
 
+struct yearNode {
+    int wordListSize;
+    int year;
+    char** uniqueWordList;
+};
+
+
+
 // grab a large chunk of memory for our main data array
 Node masterList[20000000];
 
@@ -104,6 +112,10 @@ int main()
     int year;
     int wordCount;
     int uniqueTextCount;
+
+    int yearListSize = 1;
+    int wordPlaced = 0;
+
     unsigned sha;
     int index = 0;
     int hashTableSize = 0;
@@ -112,6 +124,7 @@ int main()
     Node dataPoint;
     // initialize table of hashes with room for a single hash
     shaNode* shaTable = (shaNode*)calloc(1, sizeof(shaNode));
+    yearNode* yearList = (yearNode*)calloc(1, sizeof(yearNode));
 
     while( fscanf( inFile, "%s %d %d %d", word, &year, &wordCount, &uniqueTextCount) != EOF) {
         // store in as a node in our master structure
@@ -135,6 +148,36 @@ int main()
                 shaIndex++;
             }
         }
+
+
+
+        for( int  i=0; i< yearListSize; i++) {
+            if ( yearList[i].year == year ) {
+                yearList[i].wordListSize++;
+                yearList[i].uniqueWordList = (char**)realloc(yearList[i].uniqueWordList, yearList[i].wordListSize * sizeof(char*));
+                yearList[i].uniqueWordList[yearList[i].wordListSize-1] = (char*)calloc(81, sizeof(char));
+                memcpy( yearList[i].uniqueWordList[yearList[i].wordListSize-1], word, 81);
+                wordPlaced = 1;
+            } 
+            if (wordPlaced)
+                break;
+        }
+        if (!wordPlaced) {
+            if(yearListSize > 1) {
+                yearList = (yearNode*) realloc(yearList, yearListSize * sizeof(yearNode));
+            }
+            yearNode tempYearNode;
+            tempYearNode.year = year;
+            tempYearNode.wordListSize = 1;
+            tempYearNode.uniqueWordList = (char**)calloc(1, sizeof(char*));
+            tempYearNode.uniqueWordList[0] = (char*)calloc(81, sizeof(char));
+            memcpy(tempYearNode.uniqueWordList[0], word, 81); 
+
+            yearList[yearListSize-1] = tempYearNode;
+            yearListSize++;
+        }
+
+        wordPlaced =0;
 
         dataPoint.word = (char*)calloc(81, sizeof(char));
         memcpy(dataPoint.word, word, 81); 
@@ -163,6 +206,7 @@ int main()
     int aveSize = 0;
     int average = 0;
     int lastYear = 0;
+    int largestAverage = 0;
 
 	printf("the data is located at index: %d\n", mainSearchIndex );
 	for(int i=0; strcmp(masterList[mainSearchIndex].word, masterList[mainSearchIndex + i].word) == 0; i++) {
@@ -180,6 +224,9 @@ int main()
             aveList[aveSize-1].lastYear  = lastYear;
             aveList[aveSize-1].average   = average;
 
+            if ( average > largestAverage)
+                    largestAverage = average;
+
             average = 0;
             firstYear = masterList[ mainSearchIndex + i + 1 ].year;
         }
@@ -189,8 +236,41 @@ int main()
     for ( int i=0; i<aveSize; i++)
         printf(" %d\t%d\t%d\n", aveList[i].firstYear, aveList[i].lastYear, aveList[i].average);
 
+    // need to know the largest average
+    // compute dimentions of 
+    // y axis = largest average/ 44 (40) -> 50 lines - 6 for info
+    // x axis have 120 to work with. can fit each data point. loop set by size of ave list
 
+    printf("                  the usage of %s from %d to %d\n", masterList[mainSearchIndex].word, aveList[0].firstYear, aveList[aveSize-1].lastYear);
+    for(int i =0; i<=aveSize; i++)
+        printf("-");
+    printf("\n");
 
+    for( int j=0; j<40; j++) { 
+        printf("\n|");
+        for( int i=0; i<aveSize; i++) {
+           
+            if(aveList[i].average >= (largestAverage/40)*(40-j) )
+                    printf("x");
+            else
+                    printf(" ");
+        }
+    }
+    printf("\n");
+    for(int i =0; i<=aveSize; i++)
+        printf("-");
+    printf("\n");
+
+    int inputYear;
+    printf("\n input a year\n" );
+    scanf("%d", &inputYear);
+    for( int  i=0; i< yearListSize; i++) {
+            if ( yearList[i].year == year ) {
+                for( int k=0; k<yearList[i].wordListSize; k++) {
+                    printf("\n %s", yearList[i].uniqueWordList[k]);
+                }
+            } 
+    }
 
     return 0;
 }
