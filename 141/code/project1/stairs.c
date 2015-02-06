@@ -2,91 +2,41 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void printUp( int steps ) {
-
-	printf("\nGoing up: \n");
-
-	for (int i=1; i<=steps; ++i)
-	{	
-		for (int j=steps; j>i; --j)
-		{
-			printf(" ");
-		}	
-		for (int k=1; k<=i; ++k)
-		{
-			printf("#");
+void zigZag( int width, int rounds ) {
+for ( int o = 0; o < rounds; ++o) {
+	for (int i=1; i<=width; ++i) {	
+		if ( o >= 1 && i == 1) {
+			continue;
 		}
-		
+		for ( int k=1; k<=i; k++) {
+			if ( k<i)
+				printf(" ");
+			if ( k == i )
+				printf("x");
+		}
+		printf("\n");
+	}	
+	for (int j=width-1; j>=1; --j) {
+		for ( int t =1; t<=j; ++t) {
+			if ( t<j)
+				printf(" ");
+			if (t == j)
+				printf("x");
+		}
 		printf("\n");
 	}
 }
-
-// simply switch the order of printing the spaces vs the hashes
-void printDown( int steps ) {
-
-	printf("\nGoing down: \n");
-
-	for (int i=1; i<=steps; ++i)
-	{		
-		for (int k=1; k<=i; ++k)
-		{
-			printf("#");
-		}
-
-		for (int j=steps; j>=i; --j)
-		{
-			printf(" ");
-		}		
-
-		printf("\n");
-	}
 }
-
-// need two loops for printing hashes so that the top step 
-// only has a single hash
-// the only difference is that the first time through the outer loop
-// the second hash loop prints nothing
-void printBoth( int steps ) {
-
-	printf("\nGoing up then down: \n");
-
-	for (int i=1; i<=steps; ++i)
-	{		
-		for (int j=steps; j>i; --j)
-		{
-			printf(" ");
-		}
-
-		for (int k=1; k<=i; k++)
-		{
-			printf("#");
-		}
-
-		for (int k=1; k<i; k++)
-		{
-			printf("#");
-		}
-
-		for (int l=steps; l>=i; --l)
-		{
-			printf(" ");
-		}		
-
-		printf("\n");
-	}
-}
-
 
 int main( void ) {
 	
-	printf("Enter a number to build your stairs:\n");
-	int steps = get_int();
+	printf("Enter a number of rounds:\n");
+	int rounds = get_int();
+	printf("enter a width:\n");
+	int width = get_int();
 	
-	// pass the value to our functions
-	// no return value is given
-	printUp( steps );
-	printDown( steps );
-	printBoth( steps );
+	zigZag(width, rounds);
+	
 	
 	// present client with bill for construction
 	printf("\nThat'll be $25,000 please/thanks/bye.\n\n");
