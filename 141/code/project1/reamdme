@@ -1,0 +1,10 @@
+Dale Wesa 676019303
+
+
+to run these programs do the following
+
+%: make zigzag
+%: ./zigzag
+
+%: log
+%: ./log

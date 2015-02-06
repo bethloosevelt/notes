@@ -1,3 +1,9 @@
+// Dale Wesa
+// 676019303
+// feb 2015
+
+
+
 #include "simpleio.h"
 #include <stdlib.h>
 #include <stdio.h>
