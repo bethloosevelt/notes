@@ -66,7 +66,24 @@ vector<string> getWordsFromFile(string filename) {
 void insertIntoTable(vector<string> &table, string word, unsigned index, int &collisions) {
 
   while(1) {
-    if (index == table.size() ) {
+    if (index >= table.size() ) {
+        index = 0;
+    }
+    if(table.at(index) == "") {
+      table.at(index) = word;
+      return;
+    }
+    else {
+      collisions++;
+      index++;
+    }
+  }
+}
+
+void insertIntoTable(vector<string> &table, string word, unsigned index, int &collisions) {
+
+  while(1) {
+    if (index >= table.size() ) {
         index = 0;
     }
     if(table.at(index) == "") {
