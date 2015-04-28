@@ -16,7 +16,7 @@ vector<string> tableTwo;
 vector<string> tableThree;
 vector<string> tableFour;
 vector<string> tableFive;
-unsigned collisions;
+int collisions = 0;;
 
 
 #define A 54059 /* a prime */
@@ -63,20 +63,19 @@ vector<string> getWordsFromFile(string filename) {
     return words;
 }
 
-void insertIntoTable(vector<string> table, string word, unsigned index) {
-  string blah;
-  if(table[index] == blah) {
-    table[index] = word;
-    cout << "added " << word << " at index " << index << endl;
-  }
-  else {
-    if (index+1 == table.size() ) {
-       insertIntoTable(table, word, 0);
-       collisions++;
+void insertIntoTable(vector<string> &table, string word, unsigned index, int &collisions) {
+
+  while(1) {
+    if (index == table.size() ) {
+        index = 0;
+    }
+    if(table.at(index) == "") {
+      table.at(index) = word;
+      return;
     }
     else {
       collisions++;
-      insertIntoTable(table, word, index++);
+      index++;
     }
   }
 }
@@ -84,23 +83,24 @@ void insertIntoTable(vector<string> table, string word, unsigned index) {
 int main(int argc, char const *argv[])
 {
   vector<string> words = getWordsFromFile("will.txt");
-  tableOne.resize(37141);
-  tableTwo.resize(40000);
-  tableThree.resize(50000);
-  tableFour.resize(60000);
-  tableFive.resize(70000);
-  collisions = 0;
+  string empty = "";
+  tableOne.assign(37141, empty);
+  tableTwo.assign(40000, empty);
+  tableThree.assign(50000, empty);
+  tableFour.assign(60000, empty);
+  tableFive.assign(70000, empty);
 
   cout << words.size() << endl;
   // vector hashTable = new vector();
   // hashTable.reserve(words.size());
   unsigned hash;
   unsigned size = words.size();
+  cout << size << endl;
 
   for ( int i=0; i< words.size(); i++ ) {
     hash = hash_str(words[i], size);
     //cout << words[i] << " : " << hash << endl;
-    insertIntoTable(tableOne, words[i], hash);
+    insertIntoTable(tableOne, words.at(i), hash, collisions);
   }
   cout << collisions;
   return 0;
