@@ -11,11 +11,11 @@
 using namespace std;
 
 
-vector<string> tableOne;
-vector<string> tableTwo;
-vector<string> tableThree;
-vector<string> tableFour;
-vector<string> tableFive;
+vector<vector<string> > tableOne;
+vector<vector<string> > tableTwo;
+vector<vector<string> > tableThree;
+vector<vector<string> > tableFour;
+vector<vector<string> > tableFive;
 int collisions = 0;;
 
 
@@ -63,14 +63,14 @@ vector<string> getWordsFromFile(string filename) {
     return words;
 }
 
-void insertIntoTable(vector<string> &table, string word, unsigned index, int &collisions) {
+void insertIntoTable(vector<vector<string> > &table, string word, unsigned index, int &collisions) {
 
   while(1) {
     if (index >= table.size() ) {
         index = 0;
     }
-    if(table.at(index) == "") {
-      table.at(index) = word;
+    if(table.at(index).back() == "") {
+       table.at(index).push_back( word );
       return;
     }
     else {
@@ -80,45 +80,103 @@ void insertIntoTable(vector<string> &table, string word, unsigned index, int &co
   }
 }
 
-void insertIntoTable(vector<string> &table, string word, unsigned index, int &collisions) {
+void insertIntoTableSquare(vector<vector<string> > &table, string word, unsigned index, int &collisions) {
+  int quad=1;
+  while(1) {
+    if (index >= table.size() ) {
+        index = 0;
+    }
+    if(table.at(index).back() == "") {
+       table.at(index).push_back( word );
+
+      return;
+    }
+    else {
+      collisions++;
+      index = (index + (quad * quad)) % table.size();
+      quad++;
+    }
+  }
+}
+
+
+void insertIntoTableChain(vector<vector<string> > &table, string word, unsigned index, int &collisions) {
 
   while(1) {
     if (index >= table.size() ) {
         index = 0;
     }
-    if(table.at(index) == "") {
-      table.at(index) = word;
+    if(table.at(index).back() == "") {
+       table.at(index).push_back( word );
       return;
     }
     else {
-      collisions++;
-      index++;
+      collisions += table.at(index).size();
+      table.at(index).push_back( word );
+      return;
     }
   }
+}
+
+void hashAndPrint(int tablesize, vector<string> words) {
+  cout << tablesize << "\t\t" ;
+  vector<string> bucket;
+  bucket.push_back("");
+  int collisions = 0;
+  unsigned hash;
+
+  tableOne.clear();
+  tableOne.assign(tablesize, bucket);
+  // table one linear
+  for ( int i=0; i< words.size(); i++ ) {
+    hash = hash_str(words[i], tablesize);
+    //cout << words[i] << " : " << hash << endl;
+    insertIntoTable(tableOne, words.at(i), hash, collisions);
+  }
+  cout << collisions << "\t\t";
+  tableOne.clear();
+  tableOne.assign(tablesize, bucket);
+
+  // table one quadratic
+  for ( int i=0; i< words.size(); i++ ) {
+    hash = hash_str(words[i], tablesize);
+    //cout << words[i] << " : " << hash << endl;
+    insertIntoTableSquare(tableOne, words.at(i), hash, collisions);
+  }
+  cout << collisions << "\t\t\t";
+  collisions = 0;
+  tableOne.clear();
+  tableOne.assign(tablesize, bucket);
+  // table one chaining
+  for ( int i=0; i< words.size(); i++ ) {
+    hash = hash_str(words[i], tablesize);
+    //cout << words[i] << " : " << hash << endl;
+    insertIntoTableChain(tableOne, words.at(i), hash, collisions);
+  }
+  cout << collisions << endl;
 }
 
 int main(int argc, char const *argv[])
 {
+  cout << "Author: Dale Wesa" << endl;
+  cout << "Date: 4/27/2015, UIC CS 251 Data Structures" << endl;
+  cout << "Program: #4, Shakespeare Hashing" << endl;
+  cout << "System: g++ on a 2.2 GHz Intel Core i3 Mac, 4GB RAM" << endl;
+  cout << "Lab: Thurs 9am" << endl;
+  cout << endl;
+  cout << "loading file" << endl;
   vector<string> words = getWordsFromFile("will.txt");
-  string empty = "";
-  tableOne.assign(37141, empty);
-  tableTwo.assign(40000, empty);
-  tableThree.assign(50000, empty);
-  tableFour.assign(60000, empty);
-  tableFive.assign(70000, empty);
 
-  cout << words.size() << endl;
-  // vector hashTable = new vector();
-  // hashTable.reserve(words.size());
+
   unsigned hash;
-  unsigned size = words.size();
-  cout << size << endl;
-
-  for ( int i=0; i< words.size(); i++ ) {
-    hash = hash_str(words[i], size);
-    //cout << words[i] << " : " << hash << endl;
-    insertIntoTable(tableOne, words.at(i), hash, collisions);
+  cout << "\t\tCollisions per method" << endl;
+  cout << "Table Size\tLinearProbing\tQuadraticProbing\tChaining" << endl;
+  int size;
+  for ( int i=1; i<6; i++) {
+    size = i*10000 + 30000;
+      hashAndPrint( size, words);
   }
-  cout << collisions;
+
+
   return 0;
 }
