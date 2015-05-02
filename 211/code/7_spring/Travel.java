@@ -48,6 +48,9 @@ public class Travel
      else if (command.equals("f") == true)
        doFile(sc);
 
+     else if (command.equals("w") == true)
+         whereTo(sc);
+
      else if (command.equals("#") == true)
        ;
 
@@ -126,6 +129,32 @@ public class Travel
 
     System.out.println ("Performing the Resize Command with " + val1 );
     travelGraph.resize(val1);
+ }
+
+ public void whereTo(Scanner sc)
+ {
+   int val1 = 0;
+
+   if ( sc.hasNextInt() == true )
+     val1 = sc.nextInt();
+   else
+   {
+     System.out.println ("Integer value expected");
+     return;
+   }
+
+    System.out.println ("Performing the Resize Command with " + val1 );
+    Linkedlist list = new Linkedlist();
+    Linkedlist destinations = travelGraph.getDestinations(val1, list);
+
+    int[] places = destinations.contents();
+    System.out.println("from " + val1 + " you can travel to the following in one or more flights");
+    for (int i=0; i<places.length; i++) {
+        if( places[i] != val1) {
+            System.out.print(places[i] + " ");
+        }
+    }
+    System.out.println();
  }
 
  public void doInsert(Scanner sc)

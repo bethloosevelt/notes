@@ -81,6 +81,21 @@ public class Graph {
         }
     }
 
+    Linkedlist getDestinations(int from, Linkedlist beento) {
+
+        beento.addNode(from);
+        from--;
+
+        int[] connectedTo = graph[from].contents();
+        for( int i=0; i<connectedTo.length; i++) {
+
+            if ( !beento.exists(connectedTo[i]) ) {
+                return getDestinations(connectedTo[i], beento);
+            }
+        }
+        return beento;
+    }
+
     boolean in( int[] arr, int val) {
         for ( int i=0; i<arr.length; i++) {
             if (arr[i] == val) {
