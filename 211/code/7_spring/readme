@@ -1,0 +1,10 @@
+compile and run Agent.java
+
+wanted to keep the Main function out of the Travel class
+
+alternatively, run
+
+./build.sh
+java Agent
+
+dw
